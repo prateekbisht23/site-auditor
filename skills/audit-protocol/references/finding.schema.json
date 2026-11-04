@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "site-auditor group findings",
+  "type": "object",
+  "required": ["group", "pages", "findings"],
+  "properties": {
+    "group": { "type": "string" },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "properties": {
+          "url": { "type": "string" },
+          "load_ms": { "type": "number" },
+          "elements_total": { "type": "integer" },
+          "elements_tested": { "type": "integer" },
+          "skipped_forbidden": { "type": "array", "items": { "type": "string" } },
+          "blocked_actions": { "type": "array", "items": { "type": "string" } },
+          "coverage_limits": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "section", "severity", "title", "pages", "repro", "expected", "actual", "evidence"],
+        "properties": {
+          "id": { "type": "string" },
+          "section": { "enum": ["BUG", "DEV_GAP", "UX_OBSERVATION"] },
+          "severity": { "enum": ["P0", "P1", "P2", "P3"] },
+          "category": { "enum": ["Functional", "Performance", "Accessibility", "Security", "SEO", "Visual"] },
+          "title": { "type": "string", "maxLength": 120 },
+          "pages": { "type": "array", "items": { "type": "string" } },
+          "component": { "type": "string", "description": "locator or name of the element" },
+          "viewport": { "enum": ["desktop", "mobile", "both"] },
+          "repro": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "expected": { "type": "string" },
+          "actual": { "type": "string" },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["kind"],
+              "properties": {
+                "kind": { "enum": ["console", "request", "curl", "perf", "screenshot", "dom", "timing"] },
+                "value": { "type": "string" },
+                "file": { "type": "string" }
+              }
+            }
+          },
+          "likely_cause": { "type": "string" },
+          "wcag": { "type": "string", "description": "e.g. 2.4.7 Focus Visible (AA)" },
+          "root_cause_key": { "type": "string", "description": "dedup key: console signature, METHOD+path+status, or component locator" }
+        }
+      }
+    }
+  }
+}

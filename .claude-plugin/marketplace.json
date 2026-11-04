@@ -1,0 +1,11 @@
+{
+  "name": "site-auditor",
+  "owner": { "name": "Prateek Bisht" },
+  "plugins": [
+    {
+      "name": "site-auditor",
+      "source": "./",
+      "description": "Read-only website audit swarm: UX + DevTools, evidence-backed, deduplicated report."
+    }
+  ]
+}

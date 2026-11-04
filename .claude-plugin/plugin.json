@@ -1,0 +1,9 @@
+{
+  "name": "site-auditor",
+  "version": "0.1.0",
+  "description": "Read-only website audit by a swarm of Claude Code subagents: UX pass + DevTools pass, evidence-backed findings, one deduplicated report.",
+  "author": { "name": "Prateek Bisht", "url": "https://github.com/prateekbisht23" },
+  "repository": "https://github.com/prateekbisht23/site-auditor",
+  "license": "MIT",
+  "keywords": ["audit", "qa", "devtools", "accessibility", "performance", "subagents"]
+}
